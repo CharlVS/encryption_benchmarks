@@ -47,9 +47,10 @@ class _BenchmarkBodyState extends State<BenchmarkBody> {
     });
 
     for (int i = 0; i <= 100000; i += 10000) {
-      final elapsedMilliseconds = await compute(_deriveKey, i <= 0 ? 1 : i);
+      final clampedI = i <= 0 ? 1 : i;
+      final elapsedMilliseconds = await compute(_deriveKey, clampedI);
       setState(() {
-        _results[i] = elapsedMilliseconds;
+        _results[clampedI] = elapsedMilliseconds;
       });
     }
 
